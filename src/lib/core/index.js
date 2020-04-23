@@ -6,5 +6,4 @@ export { ErrorMessage } from "./ErrorMessage";
 export { GroupField } from "./GroupField";
 export { SelectField } from "./SelectField";
 export { TextField } from "./TextField";
-export { FileUploadField } from "./FileUploadField";
 export { ActionButton } from "./ActionButton";
