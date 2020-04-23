@@ -1,0 +1,102 @@
+{
+  "name": "react-invenio-forms",
+  "version": "0.1.0",
+  "description": "React components to build forms in Invenio",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rimraf dist && NODE_ENV=production rollup -c",
+    "edit-linked-package": "json -I -f ./dist/package.json -e 'this.module=\"esm/index.js\", this.main=\"cjs/index.js\"' ",
+    "prelink-dist": "cp package.json ./dist && npm run edit-linked-package",
+    "link-dist": "cd dist && npm link",
+    "postlink-dist": "cd dist && rm -rf node_modules",
+    "unlink-dist": "cd dist && npm unlink && rm package*",
+    "watch": "NODE_ENV=development rollup --watch -c",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js"
+  },
+  "peerDependencies": {
+    "formik": "^2.1.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "lodash": "^4.17.15",
+    "semantic-ui-react": "^0.88.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@svgr/rollup": "^4.3.2",
+    "axios-mock-adapter": "^1.17.0",
+    "coveralls": "^3.0.7",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "expect": "^24.8.0",
+    "formik": "^2.1.4",
+    "json": "^9.0.6",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.12.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-local-resolve": "^1.0.7",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-url": "^3.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.0",
+    "yup": "^0.28.3"
+  },
+  "author": {
+    "name": "CERN",
+    "email": "info@zzacharo.org"
+  },
+  "homepage": "https://zzacharo.github.io/invenio-forms/",
+  "bugs": {
+    "url": "https://github.com/zzacharo/invenio-forms/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zzacharo/invenio-forms.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "react-invenio-forms",
+    "forms",
+    "react forms"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  }
+}
