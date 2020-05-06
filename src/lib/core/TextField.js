@@ -1,3 +1,10 @@
+// This file is part of React-Invenio-Forms
+// Copyright (C) 2020 CERN.
+// Copyright (C) 2020 Northwestern University.
+//
+// React-Invenio-Forms is free software; you can redistribute it and/or modify it
+// under the terms of the MIT License; see LICENSE file for more details.
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { FastField, Field, getIn } from "formik";
@@ -6,20 +13,16 @@ import { Form } from "semantic-ui-react";
 import { ErrorMessage } from "./ErrorMessage";
 
 export class TextField extends Component {
-  renderFormField = (props) => {
+  renderFormField = (formikBag) => {
     const { fieldPath, optimized, ...uiProps } = this.props;
-    const {
-      form: { values, handleChange, handleBlur },
-    } = props;
-
     return (
       <Form.Field id={fieldPath}>
         <Form.Input
           id={fieldPath}
           name={fieldPath}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={getIn(values, fieldPath, "")}
+          onChange={formikBag.form.handleChange}
+          onBlur={formikBag.form.handleBlur}
+          value={getIn(formikBag.form.values, fieldPath, "")}
           {...uiProps}
         ></Form.Input>
         <ErrorMessage fieldPath={fieldPath} />
