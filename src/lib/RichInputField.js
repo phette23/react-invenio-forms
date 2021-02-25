@@ -15,13 +15,14 @@ import { ErrorLabel, FieldLabel } from 'react-invenio-forms';
 
 export class RichInputField extends Component {
   renderFormField = (formikBag) => {
-    const { fieldPath, label } = this.props;
+    const { fieldPath, label, editorConfig } = this.props;
     var value = getIn(formikBag.form.values, fieldPath, '');
     return (
       <Form.Field id={fieldPath}>
         {<FieldLabel htmlFor={fieldPath} label={label}></FieldLabel>}
         <CKEditor
           editor={ClassicEditor}
+          config={editorConfig}
           data={value}
           onChange={(event, editor) => {
             formikBag.form.setFieldValue(fieldPath, editor.getData());
@@ -51,9 +52,11 @@ export class RichInputField extends Component {
 RichInputField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
   optimized: PropTypes.bool,
+  editorConfig: PropTypes.object,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 RichInputField.defaultProps = {
   optimized: false,
+  editorConfig: {},
 };
