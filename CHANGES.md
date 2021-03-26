@@ -1,5 +1,7 @@
 # Changes
 
+Version 0.7.0 (released 2021-03-26)
+
 Version 0.6.2 (released 2021-02-17)
 
 * Remove BaseForm Container
