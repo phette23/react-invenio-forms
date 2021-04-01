@@ -9,20 +9,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _debounce from 'lodash/debounce';
 import _uniqBy from 'lodash/uniqBy';
-import _pickBy from 'lodash/pickBy';
 import axios from 'axios';
 import { Message } from 'semantic-ui-react';
 import { SelectField } from './SelectField';
 
-const DEFAULT_SUGGESTION_SIZE = 5;
-
-// Replace part is needed since encodeURIComponent leaves some characters unescaped
-// Code is taken from MDN web docs
-const encodeQuery = (query) =>
-  encodeURIComponent(query).replace(
-    /[!'()*~-]/g,
-    (char) => `%${char.charCodeAt(0).toString(16)}`
-  );
+const DEFAULT_SUGGESTION_SIZE = 20;
 
 const serializeSuggestions = (suggestions) =>
   suggestions.map((item) => ({
@@ -132,7 +123,7 @@ export class RemoteSelectField extends Component {
     return axios
       .get(suggestionAPIUrl, {
         params: {
-          q: `${encodeQuery(searchQuery)}*`,
+          q: searchQuery,
           size: DEFAULT_SUGGESTION_SIZE,
           ...suggestionAPIQueryParams,
         },
