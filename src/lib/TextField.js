@@ -8,20 +8,41 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FastField, Field, getIn } from 'formik';
+import { Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class TextField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      valueUpdated: false,
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      value: e.target.value,
+      valueUpdated: true,
+    });
+  };
+
   renderFormField = (formikBag) => {
     const { fieldPath, optimized, error, helpText, ...uiProps } = this.props;
+    const { value, valueUpdated } = this.state;
+    const formikValue = getIn(formikBag.form.values, fieldPath, '');
+
     return (
       <>
         <Form.Input
           id={fieldPath}
           name={fieldPath}
-          onChange={formikBag.form.handleChange}
-          onBlur={formikBag.form.handleBlur}
-          value={getIn(formikBag.form.values, fieldPath, '')}
+          onChange={this.handleChange}
+          onBlur={(e) => {
+            formikBag.form.setFieldValue(fieldPath, value);
+            formikBag.form.handleBlur(e);
+          }}
+          value={formikValue && !valueUpdated ? formikValue : value}
           error={error || getIn(formikBag.form.errors, fieldPath, null)}
           {...uiProps}
         />
@@ -31,10 +52,13 @@ export class TextField extends Component {
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
-
+    /*
+     * TextField manages the value internally using the components
+     * state isntead of formik's state to avoid slowness.
+     * Do not change to FastField or this won't work!
+     */
     return (
-      <FormikField
+      <Field
         id={this.props.fieldPath}
         name={this.props.fieldPath}
         component={this.renderFormField}

@@ -7,7 +7,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, getIn } from 'formik';
+import { Field, getIn, FastField } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class GroupField extends React.Component {
@@ -60,8 +60,12 @@ export class GroupField extends React.Component {
   };
 
   render() {
+    const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <Field name={this.props.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }
@@ -69,8 +73,10 @@ export class GroupField extends React.Component {
 GroupField.propTypes = {
   border: PropTypes.bool,
   fieldPath: PropTypes.string,
+  optimized: PropTypes.bool,
 };
 
 GroupField.defaultProps = {
   border: false,
+  optimized: false,
 };
