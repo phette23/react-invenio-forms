@@ -39,7 +39,10 @@ export class TextField extends Component {
           name={fieldPath}
           onChange={this.handleChange}
           onBlur={(e) => {
-            formikBag.form.setFieldValue(fieldPath, value);
+            formikBag.form.setFieldValue(
+              fieldPath,
+              formikValue && !valueUpdated ? formikValue : value
+            );
             formikBag.form.handleBlur(e);
           }}
           value={formikValue && !valueUpdated ? formikValue : value}
@@ -54,7 +57,7 @@ export class TextField extends Component {
   render() {
     /*
      * TextField manages the value internally using the components
-     * state isntead of formik's state to avoid slowness.
+     * state instead of formik's state to avoid slowness.
      * Do not change to FastField or this won't work!
      */
     return (
