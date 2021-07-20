@@ -31,6 +31,7 @@ export class TextField extends Component {
     const { fieldPath, optimized, error, helpText, ...uiProps } = this.props;
     const { value, valueUpdated } = this.state;
     const formikValue = getIn(formikBag.form.values, fieldPath, '');
+    const initialValue = getIn(formikBag.form.initialValues, fieldPath, '');
 
     return (
       <>
@@ -46,7 +47,15 @@ export class TextField extends Component {
             formikBag.form.handleBlur(e);
           }}
           value={formikValue && !valueUpdated ? formikValue : value}
-          error={error || getIn(formikBag.form.errors, fieldPath, null)}
+          error={
+            error ||
+            (formikValue === value &&
+              getIn(formikBag.form.errors, fieldPath, null)) ||
+            // We check if initialValue changed to display the initialError,
+            // otherwise it would be displayed despite updating the field
+            (initialValue === value &&
+              getIn(formikBag.form.initialErrors, fieldPath, null))
+          }
           {...uiProps}
         />
         <label className="helptext">{helpText}</label>

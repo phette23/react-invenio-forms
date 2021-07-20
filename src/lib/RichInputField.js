@@ -17,10 +17,20 @@ export class RichInputField extends Component {
   renderFormField = (formikBag) => {
     const { editorConfig, fieldPath, label, required } = this.props;
     const value = getIn(formikBag.form.values, fieldPath, '');
-    const error = getIn(formikBag.form.errors, fieldPath, false);
+    const initialValue = getIn(formikBag.form.initialValues, fieldPath, '');
+    const error =
+      getIn(formikBag.form.errors, fieldPath, false) ||
+      // We check if initialValue changed to display the initialError,
+      // otherwise it would be displayed despite updating the field
+      (initialValue === value &&
+        getIn(formikBag.form.initialErrors, fieldPath, false));
     return (
       <Form.Field id={fieldPath} required={required} error={error}>
-        {React.isValidElement(label) ? label : <label htmlFor={fieldPath}>{label}</label>}
+        {React.isValidElement(label) ? (
+          label
+        ) : (
+          <label htmlFor={fieldPath}>{label}</label>
+        )}
         <CKEditor
           editor={ClassicEditor}
           config={editorConfig}

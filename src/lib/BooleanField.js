@@ -24,9 +24,20 @@ export class BooleanField extends Component {
   renderFormField = (props) => {
     const { fieldPath, label, optimized, ...uiProps } = this.props;
     const {
-      form: { values, handleBlur, errors, setFieldValue },
+      form: {
+        values,
+        handleBlur,
+        errors,
+        initialErrors,
+        initialValues,
+        setFieldValue,
+      },
     } = props;
     const value = getIn(values, fieldPath, false);
+    const initialValue = getIn(initialValues, fieldPath, false);
+    // We check if initialValue changed to display the initialError,
+    // otherwise it would be displayed despite updating the field
+    const fieldErrors = errors || (initialValue === value && initialErrors);
     return (
       <Form.Group inline>
         <label htmlFor={fieldPath}>{label}</label>
@@ -36,7 +47,7 @@ export class BooleanField extends Component {
           onChange={() => setFieldValue(fieldPath, !value)}
           onBlur={handleBlur}
           checked={value}
-          error={this.renderError(errors, fieldPath)}
+          error={this.renderError(fieldErrors, fieldPath)}
           {...uiProps}
         ></Form.Checkbox>
       </Form.Group>

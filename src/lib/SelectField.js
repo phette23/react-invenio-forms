@@ -38,7 +38,14 @@ export class SelectField extends Component {
 
   renderFormField = (formikProps) => {
     const {
-      form: { values, setFieldValue, handleBlur, errors },
+      form: {
+        values,
+        setFieldValue,
+        handleBlur,
+        errors,
+        initialErrors,
+        initialValues,
+      },
     } = formikProps;
     const {
       defaultValue,
@@ -52,11 +59,18 @@ export class SelectField extends Component {
       ...uiProps
     } = this.props;
     const value = getIn(values, fieldPath, defaultValue);
+    const initialValue = getIn(initialValues, fieldPath, '');
     return (
       <Form.Dropdown
         fluid
         selection
-        error={error || getIn(errors, fieldPath, null)}
+        error={
+          error ||
+          getIn(errors, fieldPath, null) ||
+          // We check if initialValue changed to display the initialError,
+          // otherwise it would be displayed despite updating the fieldu
+          (initialValue === value && getIn(initialErrors, fieldPath, null))
+        }
         id={fieldPath}
         label={{ children: label, htmlFor: fieldPath }}
         name={fieldPath}
