@@ -1,5 +1,8 @@
 # Changes
 
+Version 0.8.7 (released 2021-07-20)
+* Improve error display
+
 Version 0.8.6 (released 2021-07-20)
 * Improve RichInputField (error-able, require-able)
 
