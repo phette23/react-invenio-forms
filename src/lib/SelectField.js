@@ -78,6 +78,7 @@ export class SelectField extends Component {
         onChange={(event, data) => {
           if (onChange) {
             onChange({ event, data, formikProps });
+            event.target.value = '';
           } else {
             setFieldValue(fieldPath, data.value);
           }
