@@ -12,14 +12,11 @@ import { Field } from 'formik';
 import _get from 'lodash/get';
 
 export class ErrorLabel extends Component {
-  renderFormField = ({ form: { errors } }) => {
-    return _get(errors, this.props.fieldPath, '') ? (
-      <Label
-        pointing
-        prompt
-        content={_get(errors, this.props.fieldPath, '')}
-      ></Label>
-    ) : null;
+  renderFormField = ({ form: { errors, initialErrors } }) => {
+    const error =
+      _get(errors, this.props.fieldPath, '') ||
+      _get(initialErrors, this.props.fieldPath, '');
+    return error ? <Label pointing prompt content={error}></Label> : null;
   };
 
   render() {
