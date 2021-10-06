@@ -12,6 +12,7 @@ import _uniqBy from 'lodash/uniqBy';
 import axios from 'axios';
 import { Message } from 'semantic-ui-react';
 import { SelectField } from './SelectField';
+import queryString from 'query-string';
 
 const DEFAULT_SUGGESTION_SIZE = 20;
 
@@ -139,6 +140,12 @@ export class RemoteSelectField extends Component {
           ...suggestionAPIQueryParams,
         },
         headers: suggestionAPIHeaders,
+        // There is a bug in axios that prevents brackets from being encoded, 
+        // remove the paramsSerializer when fixed.
+        // https://github.com/axios/axios/issues/3316
+        paramsSerializer: (params) => {
+          return queryString.stringify(params, { arrayFormat: 'repeat' });
+        },
       })
       .then((resp) => resp?.data?.hits?.hits);
   };
