@@ -15,15 +15,15 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Formik>
-      {(props) => (
+      {() => (
         <Form>
           <RadioField
-            checked={true}
+            checked
             fieldPath="testFieldPath"
             label="testLabel"
             labelIcon="money"
             optimized={false}
-            onChange={(e, { value }) => null}
+            onChange={() => null}
             value="testValue"
           />
         </Form>

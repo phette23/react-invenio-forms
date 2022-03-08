@@ -13,9 +13,9 @@ import isEmpty from 'lodash/isEmpty';
 
 export class SelectField extends Component {
   renderError = (errors, name, value, direction = 'above') => {
+    const { options } = this.props;
     let error = null;
     if (!Array.isArray(value)) {
-      const options = this.props.options;
       if (
         !isEmpty(options) &&
         !options.find((o) => o.value === value) &&
@@ -46,18 +46,18 @@ export class SelectField extends Component {
         initialErrors,
         initialValues,
       },
+      ...cmpProps
     } = formikProps;
     const {
       defaultValue,
       error,
       fieldPath,
       label,
-      optimized,
       options,
       onChange,
       onAddItem,
       ...uiProps
-    } = this.props;
+    } = cmpProps;
     const value = getIn(values, fieldPath, defaultValue);
     const initialValue = getIn(initialValues, fieldPath, '');
     return (
@@ -96,11 +96,14 @@ export class SelectField extends Component {
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
+    const { optimized, fieldPath, ...uiProps } = this.props;
+    const FormikField = optimized ? FastField : Field;
     return (
       <FormikField
-        name={this.props.fieldPath}
+        name={fieldPath}
         component={this.renderFormField}
+        fieldPath={fieldPath}
+        {...uiProps}
       />
     );
   }
@@ -108,11 +111,20 @@ export class SelectField extends Component {
 
 SelectField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
   defaultValue: PropTypes.string,
   optimized: PropTypes.bool,
+  error: PropTypes.any,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  onChange: PropTypes.func,
+  onAddItem: PropTypes.func,
 };
 
 SelectField.defaultProps = {
   defaultValue: '',
   optimized: false,
+  error: undefined,
+  label: '',
+  onChange: undefined,
+  onAddItem: undefined,
 };

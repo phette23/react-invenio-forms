@@ -25,10 +25,13 @@ export class FieldLabel extends Component {
 FieldLabel.propTypes = {
   htmlFor: PropTypes.string,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  labelIcon: PropTypes.string,
+  icon: PropTypes.string,
   className: PropTypes.string,
 };
 
 FieldLabel.defaultProps = {
-  className: 'field-label-class'
-}
+  className: 'field-label-class',
+  icon: '',
+  htmlFor: undefined,
+  label: undefined,
+};

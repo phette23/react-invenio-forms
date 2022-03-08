@@ -12,7 +12,8 @@ import { Button } from 'semantic-ui-react';
 
 export class ActionButton extends Component {
   render() {
-    const { name, content, isDisabled, ...uiProps } = this.props;
+    const { name, content, isDisabled, onClick, children, ...uiProps } =
+      this.props;
     return (
       <Field>
         {({ form: formik }) => (
@@ -22,9 +23,9 @@ export class ActionButton extends Component {
             content={content}
             type="button"
             {...uiProps} // able to override above props
-            onClick={(e) => this.props.onClick(e, formik)}
+            onClick={(e) => onClick(e, formik)}
           >
-            {this.props.children ? this.props.children(formik) : null}
+            {children ? children(formik) : null}
           </Button>
         )}
       </Field>
@@ -36,6 +37,14 @@ ActionButton.propTypes = {
   name: PropTypes.string,
   content: PropTypes.string,
   isDisabled: PropTypes.func,
-  uiProps: PropTypes.any,
-  children: PropTypes.func,
+  children: PropTypes.any,
+  onClick: PropTypes.func,
+};
+
+ActionButton.defaultProps = {
+  name: '',
+  content: '',
+  isDisabled: undefined,
+  children: undefined,
+  onClick: undefined,
 };

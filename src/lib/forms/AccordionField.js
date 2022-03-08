@@ -29,11 +29,12 @@ export class AccordionField extends Component {
   };
 
   hasError(errors) {
-    if (this.props.fieldPath in errors) {
+    const { fieldPath } = this.props;
+    if (fieldPath in errors) {
       return true;
     }
     for (const errorPath in errors) {
-      if (errorPath.startsWith(this.props.fieldPath)) {
+      if (errorPath.startsWith(fieldPath)) {
         return true;
       }
     }
@@ -44,6 +45,7 @@ export class AccordionField extends Component {
     const {
       form: { errors, status },
     } = props;
+    const { ui, label, children } = this.props;
     const { active } = this.state;
     const hasError = status ? this.hasError(status) : this.hasError(errors);
 
@@ -51,27 +53,22 @@ export class AccordionField extends Component {
       <>
         <Segment
           onClick={() => this.handleClick(active)}
-          {...(hasError && { ...this.props.ui?.error })}
-          {...this.props.ui?.header}
+          {...(hasError && { ...ui?.error })}
+          {...ui?.header}
         >
-          <label>{this.props.label}</label>
+          <label>{label}</label>
           <span>{active ? this.iconActive : this.iconInactive}</span>
         </Segment>
-        <Container {...this.props.ui?.content}>
-          {active && this.props.children}
-        </Container>
+        <Container {...ui?.content}>{active && children}</Container>
       </>
     );
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
-    return (
-      <FormikField
-        name={this.props.fieldPath}
-        component={this.renderAccordion}
-      />
-    );
+    const { optimized, fieldPath } = this.props;
+
+    const FormikField = optimized ? FastField : Field;
+    return <FormikField name={fieldPath} component={this.renderAccordion} />;
   }
 }
 
@@ -86,6 +83,7 @@ AccordionField.propTypes = {
     error: PropTypes.object,
   }),
   optimized: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 AccordionField.defaultProps = {
@@ -96,4 +94,5 @@ AccordionField.defaultProps = {
     error: { inverted: true, color: 'red', secondary: true },
   },
   optimized: false,
+  children: null,
 };

@@ -19,7 +19,7 @@
     "watch": "NODE_ENV=development rollup --watch -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint src/ --ext .js",
     "format": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --write \"src/**/*.js\""
   },
   "dependencies": {},
@@ -54,6 +54,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.0",
     "enzyme-to-json": "^3.4.0",
+    "@inveniosoftware/eslint-config-invenio": "^1.0.2",
     "expect": "^26.0.0",
     "formik": "^2.1.0",
     "json": "^9.0.0",

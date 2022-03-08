@@ -40,30 +40,30 @@ export class RemoteSelectField extends Component {
   }
 
   onSelectValue = (event, { options, value }, callbackFunc) => {
-    const selectedSuggestions = options.filter((item) =>
+    const { multiple } = this.props;
+    const newSelectedSuggestions = options.filter((item) =>
       value.includes(item.value)
     );
 
     this.setState(
       {
-        selectedSuggestions: selectedSuggestions,
+        selectedSuggestions: newSelectedSuggestions,
         searchQuery: null,
         error: false,
-        open: this.props.multiple ? true : false,
+        open: multiple ? true : false,
       },
-      () => callbackFunc(this.state.selectedSuggestions)
+      () => callbackFunc(newSelectedSuggestions)
     );
   };
 
   handleAddition = (e, { value }, callbackFunc) => {
-    const selectedSuggestion = this.props.serializeAddedValue
-      ? this.props.serializeAddedValue(value)
+    const { serializeAddedValue } = this.props;
+    const { selectedSuggestions } = this.state;
+    const selectedSuggestion = serializeAddedValue
+      ? serializeAddedValue(value)
       : { text: value, value, key: value, name: value };
 
-    const newSelectedSuggestions = [
-      ...this.state.selectedSuggestions,
-      selectedSuggestion,
-    ];
+    const newSelectedSuggestions = [...selectedSuggestions, selectedSuggestion];
 
     this.setState(
       (prevState) => ({
@@ -73,18 +73,18 @@ export class RemoteSelectField extends Component {
           'value'
         ),
       }),
-      () => callbackFunc(this.state.selectedSuggestions)
+      () => callbackFunc(selectedSuggestions)
     );
   };
 
   onSearchChange = _debounce(async (e, { searchQuery }) => {
-    const query = this.props.preSearchChange(searchQuery);
+    const { preSearchChange, serializeSuggestions } = this.props;
+    const query = preSearchChange(searchQuery);
     this.setState({ isFetching: true, searchQuery: query });
     try {
       const suggestions = await this.fetchSuggestions(query);
 
-      const serializedSuggestions =
-        this.props.serializeSuggestions(suggestions);
+      const serializedSuggestions = serializeSuggestions(suggestions);
       this.setState((prevState) => ({
         suggestions: _uniqBy(
           [...prevState.selectedSuggestions, ...serializedSuggestions],
@@ -122,14 +122,8 @@ export class RemoteSelectField extends Component {
           },
         },
       };
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
-          // const random_boolean = Math.random() < 0.5;
-          // if (random_boolean) {
-          //   resolve(response.data.hits.hits);
-          // } else {
-          //   reject('Something went wrong');
-          // }
           resolve(response.data.hits.hits);
         }, 100);
       });
@@ -153,22 +147,23 @@ export class RemoteSelectField extends Component {
   };
 
   getNoResultsMessage = () => {
-    if (this.state.isFetching) {
-      return this.props.loadingMessage;
+    const {
+      loadingMessage,
+      suggestionsErrorMessage,
+      noQueryMessage,
+      noResultsMessage,
+    } = this.props;
+    const { isFetching, error, searchQuery } = this.state;
+    if (isFetching) {
+      return loadingMessage;
     }
-    if (this.state.error) {
-      return (
-        <Message
-          negative
-          size="mini"
-          content={this.props.suggestionsErrorMessage}
-        ></Message>
-      );
+    if (error) {
+      return <Message negative size="mini" content={suggestionsErrorMessage} />;
     }
-    if (!this.state.searchQuery) {
-      return this.props.noQueryMessage;
+    if (!searchQuery) {
+      return noQueryMessage;
     }
-    return this.props.noResultsMessage;
+    return noResultsMessage;
   };
 
   onClose = () => {
@@ -231,16 +226,17 @@ export class RemoteSelectField extends Component {
 
   render() {
     const { compProps, uiProps } = this.getProps();
+    const { error, suggestions, open, isFetching } = this.state;
     return (
       <SelectField
         {...uiProps}
-        allowAdditions={this.state.error ? false : uiProps.allowAdditions}
+        allowAdditions={error ? false : uiProps.allowAdditions}
         fieldPath={compProps.fieldPath}
-        options={this.state.suggestions}
+        options={suggestions}
         noResultsMessage={this.getNoResultsMessage()}
         search={compProps.search}
         lazyLoad
-        open={this.state.open}
+        open={open}
         onClose={this.onClose}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
@@ -267,7 +263,7 @@ export class RemoteSelectField extends Component {
             }
           });
         }}
-        loading={this.state.isFetching}
+        loading={isFetching}
       />
     );
   }
@@ -289,10 +285,11 @@ RemoteSelectField.propTypes = {
     PropTypes.object,
   ]),
   noQueryMessage: PropTypes.string,
-  fetchedOptions: PropTypes.array, //TODO: remove this after vocabularies implementation
+  fetchedOptions: PropTypes.array.isRequired, //TODO: remove this after vocabularies implementation
   preSearchChange: PropTypes.func, // Takes a string and returns a string
   onValueChange: PropTypes.func, // Takes the SUI hanf and updated selectedSuggestions
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  multiple: PropTypes.bool,
 };
 
 RemoteSelectField.defaultProps = {
@@ -306,4 +303,8 @@ RemoteSelectField.defaultProps = {
   loadingMessage: 'Loading...',
   preSearchChange: (x) => x,
   search: true,
+  multiple: false,
+  serializeAddedValue: undefined,
+  initialSuggestions: [],
+  onValueChange: undefined,
 };

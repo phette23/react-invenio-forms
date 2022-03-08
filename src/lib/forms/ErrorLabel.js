@@ -13,10 +13,10 @@ import _get from 'lodash/get';
 
 export class ErrorLabel extends Component {
   renderFormField = ({ form: { errors, initialErrors } }) => {
+    const { fieldPath } = this.props;
     const error =
-      _get(errors, this.props.fieldPath, '') ||
-      _get(initialErrors, this.props.fieldPath, '');
-    return error ? <Label pointing prompt content={error}></Label> : null;
+      _get(errors, fieldPath, '') || _get(initialErrors, fieldPath, '');
+    return error ? <Label pointing prompt content={error} /> : null;
   };
 
   render() {

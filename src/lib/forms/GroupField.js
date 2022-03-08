@@ -12,8 +12,9 @@ import { Form } from 'semantic-ui-react';
 
 export class GroupField extends React.Component {
   hasGroupErrors = (errors) => {
+    const { fieldPath } = this.props;
     for (const field in errors) {
-      if (field.startsWith(this.props.fieldPath)) {
+      if (field.startsWith(fieldPath)) {
         return true;
       }
     }
@@ -30,14 +31,7 @@ export class GroupField extends React.Component {
   };
 
   renderFormField = (props) => {
-    const {
-      action,
-      basic,
-      border,
-      children,
-      fieldPath,
-      ...uiProps
-    } = this.props;
+    const { action, basic, border, children, fieldPath, ...uiProps } = props;
     const errors = getIn(props, 'form.errors');
     const classNames = ['form-group'];
     if (border) {
@@ -60,11 +54,15 @@ export class GroupField extends React.Component {
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
+    const { optimized, fieldPath, ...uiProps } = this.props;
+
+    const FormikField = optimized ? FastField : Field;
     return (
       <FormikField
-        name={this.props.fieldPath}
+        name={fieldPath}
         component={this.renderFormField}
+        fieldPath={fieldPath}
+        {...uiProps}
       />
     );
   }
@@ -74,9 +72,16 @@ GroupField.propTypes = {
   border: PropTypes.bool,
   fieldPath: PropTypes.string,
   optimized: PropTypes.bool,
+  action: PropTypes.any,
+  basic: PropTypes.bool,
+  children: PropTypes.any,
 };
 
 GroupField.defaultProps = {
   border: false,
+  fieldPath: '',
   optimized: false,
+  action: undefined,
+  basic: false,
+  children: undefined,
 };

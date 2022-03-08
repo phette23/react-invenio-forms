@@ -12,8 +12,9 @@ import { Field } from 'formik';
 
 export class ErrorMessage extends Component {
   renderFormField = ({ form: { errors } }) => {
-    return errors[this.props.fieldPath] ? (
-      <Message negative content={errors[this.props.fieldPath]}></Message>
+    const { fieldPath } = this.props;
+    return errors[fieldPath] ? (
+      <Message negative content={errors[fieldPath]} />
     ) : null;
   };
 

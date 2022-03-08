@@ -32,14 +32,13 @@ export class RadioField extends Component {
       label,
       labelIcon,
       onChange,
-      optimized,
       value,
       ...uiProps
     } = this.props;
 
     const handleChange = (event, data) => {
-      if (this.props.onChange) {
-        this.props.onChange({ event, data, formikProps });
+      if (onChange) {
+        onChange({ event, data, formikProps });
       } else {
         formikProps.form.setFieldValue(fieldPath, value);
       }
@@ -60,13 +59,10 @@ export class RadioField extends Component {
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
-    return (
-      <FormikField
-        name={this.props.fieldPath}
-        component={this.renderFormField}
-      />
-    );
+    const { optimized, fieldPath } = this.props;
+
+    const FormikField = optimized ? FastField : Field;
+    return <FormikField name={fieldPath} component={this.renderFormField} />;
   }
 }
 
@@ -88,4 +84,7 @@ RadioField.defaultProps = {
   checked: false,
   label: '',
   optimized: false,
+  labelIcon: '',
+  onChange: undefined,
+  value: '',
 };

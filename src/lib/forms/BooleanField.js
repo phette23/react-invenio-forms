@@ -22,7 +22,7 @@ export class BooleanField extends Component {
   }
 
   renderFormField = (props) => {
-    const { fieldPath, label, optimized, ...uiProps } = this.props;
+    const { fieldPath, label, ...uiProps } = this.props;
     const {
       form: {
         values,
@@ -49,18 +49,14 @@ export class BooleanField extends Component {
           checked={value}
           error={this.renderError(fieldErrors, fieldPath)}
           {...uiProps}
-        ></Form.Checkbox>
+        />
       </Form.Group>
     );
   };
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
-    return (
-      <FormikField
-        name={this.props.fieldPath}
-        component={this.renderFormField}
-      />
-    );
+    const { optimized, fieldPath } = this.props;
+    const FormikField = optimized ? FastField : Field;
+    return <FormikField name={fieldPath} component={this.renderFormField} />;
   }
 }
 

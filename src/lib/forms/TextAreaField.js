@@ -14,7 +14,7 @@ import { ErrorLabel } from './ErrorLabel';
 
 export class TextAreaField extends Component {
   renderFormField = (formikBag) => {
-    const { fieldPath, optimized, ...uiProps } = this.props;
+    const { fieldPath, ...uiProps } = this.props;
     return (
       <Form.Field id={fieldPath}>
         <Form.TextArea
@@ -24,19 +24,21 @@ export class TextAreaField extends Component {
           onBlur={formikBag.form.handleBlur}
           value={getIn(formikBag.form.values, fieldPath, '')}
           {...uiProps}
-        ></Form.TextArea>
+        />
         <ErrorLabel fieldPath={fieldPath} />
       </Form.Field>
     );
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
+    const { optimized, fieldPath } = this.props;
+
+    const FormikField = optimized ? FastField : Field;
 
     return (
       <FormikField
-        id={this.props.fieldPath}
-        name={this.props.fieldPath}
+        id={fieldPath}
+        name={fieldPath}
         component={this.renderFormField}
       />
     );

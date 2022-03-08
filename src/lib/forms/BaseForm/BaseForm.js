@@ -8,25 +8,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
-import { Form, Button, Container } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 export class BaseForm extends Component {
   render() {
-    const { formik } = this.props;
+    const { formik, onSubmit, children } = this.props;
     return (
-      <Formik onSubmit={this.props.onSubmit} {...formik}>
-        <Form>{this.props.children}</Form>
+      <Formik onSubmit={onSubmit} {...formik}>
+        <Form>{children}</Form>
       </Formik>
     );
   }
 }
 
 BaseForm.propTypes = {
-  successCallback: PropTypes.func,
-  submitSerializer: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
   formik: PropTypes.shape({
     initialValues: PropTypes.object.isRequired,
     validationSchema: PropTypes.object,
     validate: PropTypes.func,
   }),
+};
+
+BaseForm.defaultProps = {
+  formik: undefined,
 };

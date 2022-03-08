@@ -28,7 +28,7 @@ export class TextField extends Component {
   };
 
   renderFormField = (formikBag) => {
-    const { fieldPath, optimized, error, helpText, ...uiProps } = this.props;
+    const { fieldPath, error, helpText, ...uiProps } = this.props;
     const { value, valueUpdated } = this.state;
     const formikValue = getIn(formikBag.form.values, fieldPath, '');
     const initialValue = getIn(formikBag.form.initialValues, fieldPath, '');
@@ -69,24 +69,20 @@ export class TextField extends Component {
      * state instead of formik's state to avoid slowness.
      * Do not change to FastField or this won't work!
      */
+    const { fieldPath } = this.props;
     return (
-      <Field
-        id={this.props.fieldPath}
-        name={this.props.fieldPath}
-        component={this.renderFormField}
-      />
+      <Field id={fieldPath} name={fieldPath} component={this.renderFormField} />
     );
   }
 }
 
 TextField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
-  optimized: PropTypes.bool,
-  width: PropTypes.number,
+  error: PropTypes.any,
   helpText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 TextField.defaultProps = {
-  optimized: false,
+  error: undefined,
   helpText: '',
 };

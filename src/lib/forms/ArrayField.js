@@ -22,8 +22,9 @@ export class ArrayField extends Component {
   }
 
   hasGroupErrors = (errors) => {
+    const { fieldPath } = this.props;
     for (const field in errors) {
-      if (field.startsWith(this.props.fieldPath)) {
+      if (field.startsWith(fieldPath)) {
         return true;
       }
     }
@@ -47,6 +48,7 @@ export class ArrayField extends Component {
     } = this.props;
 
     const hasError = this.hasGroupErrors(errors) ? { error: {} } : {};
+    const { nextKey } = this.state;
     return (
       <Form.Field {...uiProps} {...hasError}>
         <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
@@ -77,7 +79,7 @@ export class ArrayField extends Component {
             onClick={() => {
               arrayHelpers.push({
                 ...defaultNewValue,
-                __key: this.state.nextKey
+                __key: nextKey,
               });
               this.setState((state) => ({ nextKey: state.nextKey - 1 }));
             }}
@@ -91,12 +93,8 @@ export class ArrayField extends Component {
   };
 
   render() {
-    return (
-      <FieldArray
-        name={this.props.fieldPath}
-        component={this.renderFormField}
-      />
-    );
+    const { fieldPath } = this.props;
+    return <FieldArray name={fieldPath} component={this.renderFormField} />;
   }
 }
 
@@ -115,5 +113,5 @@ ArrayField.defaultProps = {
   addButtonLabel: 'Add new row',
   helpText: '',
   label: '',
-  placeholder: '',
+  labelIcon: '',
 };

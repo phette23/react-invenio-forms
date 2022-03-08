@@ -30,12 +30,11 @@ export class ToggleField extends Component {
       offLabel,
       fieldPath,
       onChange,
-      optimized,
       ...uiProps
     } = this.props;
 
     const isChecked = getIn(formikProps.form.values, fieldPath) === onValue;
-    const handleChange = ({ data }) => {
+    const handleChange = () => {
       if (isChecked) {
         formikProps.form.setFieldValue(fieldPath, offValue);
       } else {
@@ -63,13 +62,9 @@ export class ToggleField extends Component {
   };
 
   render() {
-    const FormikField = this.props.optimized ? FastField : Field;
-    return (
-      <FormikField
-        name={this.props.fieldPath}
-        component={this.renderFormField}
-      />
-    );
+    const { optimized, fieldPath } = this.props;
+    const FormikField = optimized ? FastField : Field;
+    return <FormikField name={fieldPath} component={this.renderFormField} />;
   }
 }
 
@@ -79,9 +74,11 @@ ToggleField.propTypes = {
   onLabel: PropTypes.string.isRequired,
   offLabel: PropTypes.string.isRequired,
   fieldPath: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   optimized: PropTypes.bool,
 };
 
 ToggleField.defaultProps = {
+  onChange: undefined,
   optimized: true,
 };

@@ -7,23 +7,44 @@
 
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Header, Message, Container } from 'semantic-ui-react';
 
 import { TextField, BaseForm } from '../lib/forms';
 
-const CurrentRecord = (props) => (
-  <Message>
-    <Message.Header>Submitted record</Message.Header>
-    <pre>{JSON.stringify(props.record)}</pre>
-  </Message>
-);
+const CurrentRecord = (props) => {
+  const { record } = props;
+  return (
+    <Message>
+      <Message.Header>Submitted record</Message.Header>
+      <pre>{JSON.stringify(record)}</pre>
+    </Message>
+  );
+};
+
+CurrentRecord.propTypes = {
+  record: PropTypes.object,
+};
+
+CurrentRecord.defaultProps = {
+  record: undefined,
+};
 
 class RecordPreviewer extends Component {
   render() {
-    return <CurrentRecord record={this.props.record} />;
+    const { record } = this.props;
+    return <CurrentRecord record={record} />;
   }
 }
+
+RecordPreviewer.propTypes = {
+  record: PropTypes.object,
+};
+
+RecordPreviewer.defaultProps = {
+  record: undefined,
+};
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +81,7 @@ class App extends Component {
   };
 
   render() {
+    const { record } = this.state;
     return (
       <Container>
         <BaseForm
@@ -80,7 +102,7 @@ class App extends Component {
             fluid
             required
           />
-          <RecordPreviewer record={this.state.record} />
+          <RecordPreviewer record={record} />
         </BaseForm>
       </Container>
     );
