@@ -15,7 +15,7 @@ import { FieldLabel } from './FieldLabel';
 export class RadioField extends Component {
   /** Radio Formik wrapper Component */
 
-  renderFormField = (formikProps) => {
+  renderFormField = formikProps => {
     /** Radio Formik + Semantic-UI Field Component
      *
      * NOTE: renderFormField is run multiple times
@@ -26,15 +26,7 @@ export class RadioField extends Component {
      * form: current Formik form (holds formik state that drives the UI)
      */
 
-    const {
-      checked,
-      fieldPath,
-      label,
-      labelIcon,
-      onChange,
-      value,
-      ...uiProps
-    } = this.props;
+    const { checked, fieldPath, label, labelIcon, onChange, value, ...uiProps } = this.props;
 
     const handleChange = (event, data) => {
       if (onChange) {
@@ -47,9 +39,7 @@ export class RadioField extends Component {
     return (
       <Form.Radio
         name={fieldPath}
-        label={
-          <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
-        }
+        label={<FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />}
         value={getIn(formikProps.form.values, fieldPath, '')}
         checked={checked}
         onChange={handleChange}
@@ -73,11 +63,7 @@ RadioField.propTypes = {
   labelIcon: PropTypes.string,
   optimized: PropTypes.bool,
   onChange: PropTypes.func,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 RadioField.defaultProps = {

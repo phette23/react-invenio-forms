@@ -17,11 +17,7 @@ it('renders without crashing with no props', () => {
 it('renders without crashing with all props', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <FieldLabel
-      htmlFor="foo"
-      icon="american sign language interpreting"
-      label="Foo"
-    />,
+    <FieldLabel htmlFor="foo" icon="american sign language interpreting" label="Foo" />,
     div
   );
 });

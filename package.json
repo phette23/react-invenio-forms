@@ -63,7 +63,7 @@
     "query-string": "^7.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "^3.4.0",
     "rimraf": "^3.0.0",
     "rollup": "^2.10.0",
     "rollup-plugin-local-resolve": "^1.0.0",

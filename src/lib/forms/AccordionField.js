@@ -16,15 +16,11 @@ export class AccordionField extends Component {
     this.state = { active: props.active || false };
   }
 
-  iconActive = (
-    <Icon name="angle down" size="large" style={{ float: 'right' }} />
-  );
+  iconActive = (<Icon name="angle down" size="large" style={{ float: 'right' }} />);
 
-  iconInactive = (
-    <Icon name="angle right" size="large" style={{ float: 'right' }} />
-  );
+  iconInactive = (<Icon name="angle right" size="large" style={{ float: 'right' }} />);
 
-  handleClick = (showContent) => {
+  handleClick = showContent => {
     this.setState({ active: !showContent });
   };
 
@@ -41,7 +37,7 @@ export class AccordionField extends Component {
     return false;
   }
 
-  renderAccordion = (props) => {
+  renderAccordion = props => {
     const {
       form: { errors, status },
     } = props;

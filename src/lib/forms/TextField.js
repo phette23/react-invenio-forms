@@ -20,14 +20,14 @@ export class TextField extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       value: e.target.value,
       valueUpdated: true,
     });
   };
 
-  renderFormField = (formikBag) => {
+  renderFormField = formikBag => {
     const { fieldPath, error, helpText, ...uiProps } = this.props;
     const { value, valueUpdated } = this.state;
     const formikValue = getIn(formikBag.form.values, fieldPath, '');
@@ -39,7 +39,7 @@ export class TextField extends Component {
           id={fieldPath}
           name={fieldPath}
           onChange={this.handleChange}
-          onBlur={(e) => {
+          onBlur={e => {
             formikBag.form.setFieldValue(
               fieldPath,
               formikValue && !valueUpdated ? formikValue : value
@@ -49,12 +49,10 @@ export class TextField extends Component {
           value={formikValue && !valueUpdated ? formikValue : value}
           error={
             error ||
-            (formikValue === value &&
-              getIn(formikBag.form.errors, fieldPath, null)) ||
+            (formikValue === value && getIn(formikBag.form.errors, fieldPath, null)) ||
             // We check if initialValue changed to display the initialError,
             // otherwise it would be displayed despite updating the field
-            (initialValue === value &&
-              getIn(formikBag.form.initialErrors, fieldPath, null))
+            (initialValue === value && getIn(formikBag.form.initialErrors, fieldPath, null))
           }
           {...uiProps}
         />
@@ -70,9 +68,7 @@ export class TextField extends Component {
      * Do not change to FastField or this won't work!
      */
     const { fieldPath } = this.props;
-    return (
-      <Field id={fieldPath} name={fieldPath} component={this.renderFormField} />
-    );
+    return <Field id={fieldPath} name={fieldPath} component={this.renderFormField} />;
   }
 }
 

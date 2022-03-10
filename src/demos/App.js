@@ -13,7 +13,7 @@ import { Header, Message, Container } from 'semantic-ui-react';
 
 import { TextField, BaseForm } from '../lib/forms';
 
-const CurrentRecord = (props) => {
+const CurrentRecord = props => {
   const { record } = props;
   return (
     <Message>
@@ -63,7 +63,7 @@ class App extends Component {
     title: Yup.string().min(10).required(),
   });
 
-  validate = (values) => {
+  validate = values => {
     const errors = {};
 
     if (!values.title) {
@@ -72,11 +72,11 @@ class App extends Component {
     return errors;
   };
 
-  onSubmit = (values) => {
+  onSubmit = values => {
     this.setState({ record: values });
   };
 
-  onError = (error) => {
+  onError = error => {
     console.log('Server Error', error);
   };
 

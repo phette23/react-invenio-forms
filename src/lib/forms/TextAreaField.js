@@ -13,7 +13,7 @@ import { Form } from 'semantic-ui-react';
 import { ErrorLabel } from './ErrorLabel';
 
 export class TextAreaField extends Component {
-  renderFormField = (formikBag) => {
+  renderFormField = formikBag => {
     const { fieldPath, ...uiProps } = this.props;
     return (
       <Form.Field id={fieldPath}>
@@ -35,13 +35,7 @@ export class TextAreaField extends Component {
 
     const FormikField = optimized ? FastField : Field;
 
-    return (
-      <FormikField
-        id={fieldPath}
-        name={fieldPath}
-        component={this.renderFormField}
-      />
-    );
+    return <FormikField id={fieldPath} name={fieldPath} component={this.renderFormField} />;
   }
 }
 

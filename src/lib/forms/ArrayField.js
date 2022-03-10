@@ -21,7 +21,7 @@ export class ArrayField extends Component {
     };
   }
 
-  hasGroupErrors = (errors) => {
+  hasGroupErrors = errors => {
     const { fieldPath } = this.props;
     for (const field in errors) {
       if (field.startsWith(fieldPath)) {
@@ -31,7 +31,7 @@ export class ArrayField extends Component {
     return false;
   };
 
-  renderFormField = (props) => {
+  renderFormField = props => {
     const {
       form: { values, errors },
       ...arrayHelpers
@@ -81,7 +81,7 @@ export class ArrayField extends Component {
                 ...defaultNewValue,
                 __key: nextKey,
               });
-              this.setState((state) => ({ nextKey: state.nextKey - 1 }));
+              this.setState(state => ({ nextKey: state.nextKey - 1 }));
             }}
           >
             <Icon name="add" />
@@ -101,8 +101,7 @@ export class ArrayField extends Component {
 ArrayField.propTypes = {
   addButtonLabel: PropTypes.string,
   children: PropTypes.func.isRequired,
-  defaultNewValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-    .isRequired,
+  defaultNewValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   fieldPath: PropTypes.string.isRequired,
   helpText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

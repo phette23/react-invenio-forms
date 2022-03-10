@@ -21,17 +21,10 @@ export class BooleanField extends Component {
       : null;
   }
 
-  renderFormField = (props) => {
+  renderFormField = props => {
     const { fieldPath, label, ...uiProps } = this.props;
     const {
-      form: {
-        values,
-        handleBlur,
-        errors,
-        initialErrors,
-        initialValues,
-        setFieldValue,
-      },
+      form: { values, handleBlur, errors, initialErrors, initialValues, setFieldValue },
     } = props;
     const value = getIn(values, fieldPath, false);
     const initialValue = getIn(initialValues, fieldPath, false);

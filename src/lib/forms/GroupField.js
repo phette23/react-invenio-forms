@@ -11,7 +11,7 @@ import { Field, getIn, FastField } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class GroupField extends React.Component {
-  hasGroupErrors = (errors) => {
+  hasGroupErrors = errors => {
     const { fieldPath } = this.props;
     for (const field in errors) {
       if (field.startsWith(fieldPath)) {
@@ -30,7 +30,7 @@ export class GroupField extends React.Component {
     );
   };
 
-  renderFormField = (props) => {
+  renderFormField = props => {
     const { action, basic, border, children, fieldPath, ...uiProps } = props;
     const errors = getIn(props, 'form.errors');
     const classNames = ['form-group'];

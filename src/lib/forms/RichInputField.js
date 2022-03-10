@@ -14,7 +14,7 @@ import { Form } from 'semantic-ui-react';
 import { ErrorLabel } from './ErrorLabel';
 
 export class RichInputField extends Component {
-  renderFormField = (formikBag) => {
+  renderFormField = formikBag => {
     const { editorConfig, fieldPath, label, required } = this.props;
     const value = getIn(formikBag.form.values, fieldPath, '');
     const initialValue = getIn(formikBag.form.initialValues, fieldPath, '');
@@ -22,15 +22,10 @@ export class RichInputField extends Component {
       getIn(formikBag.form.errors, fieldPath, false) ||
       // We check if initialValue changed to display the initialError,
       // otherwise it would be displayed despite updating the field
-      (initialValue === value &&
-        getIn(formikBag.form.initialErrors, fieldPath, false));
+      (initialValue === value && getIn(formikBag.form.initialErrors, fieldPath, false));
     return (
       <Form.Field id={fieldPath} required={required} error={error}>
-        {React.isValidElement(label) ? (
-          label
-        ) : (
-          <label htmlFor={fieldPath}>{label}</label>
-        )}
+        {React.isValidElement(label) ? label : <label htmlFor={fieldPath}>{label}</label>}
         <CKEditor
           editor={ClassicEditor}
           config={editorConfig}
@@ -50,13 +45,7 @@ export class RichInputField extends Component {
 
     const FormikField = optimized ? FastField : Field;
 
-    return (
-      <FormikField
-        id={fieldPath}
-        name={fieldPath}
-        component={this.renderFormField}
-      />
-    );
+    return <FormikField id={fieldPath} name={fieldPath} component={this.renderFormField} />;
   }
 }
 

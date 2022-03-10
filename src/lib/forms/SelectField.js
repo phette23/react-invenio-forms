@@ -16,11 +16,7 @@ export class SelectField extends Component {
     const { options } = this.props;
     let error = null;
     if (!Array.isArray(value)) {
-      if (
-        !isEmpty(options) &&
-        !options.find((o) => o.value === value) &&
-        !isEmpty(value)
-      ) {
+      if (!isEmpty(options) && !options.find(o => o.value === value) && !isEmpty(value)) {
         error = `The current value "${value}" is invalid, please select another value.`;
       }
     }
@@ -36,28 +32,13 @@ export class SelectField extends Component {
       : null;
   };
 
-  renderFormField = (formikProps) => {
+  renderFormField = formikProps => {
     const {
-      form: {
-        values,
-        setFieldValue,
-        handleBlur,
-        errors,
-        initialErrors,
-        initialValues,
-      },
+      form: { values, setFieldValue, handleBlur, errors, initialErrors, initialValues },
       ...cmpProps
     } = formikProps;
-    const {
-      defaultValue,
-      error,
-      fieldPath,
-      label,
-      options,
-      onChange,
-      onAddItem,
-      ...uiProps
-    } = cmpProps;
+    const { defaultValue, error, fieldPath, label, options, onChange, onAddItem, ...uiProps } =
+      cmpProps;
     const value = getIn(values, fieldPath, defaultValue);
     const initialValue = getIn(initialValues, fieldPath, '');
     return (
