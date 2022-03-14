@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Image as SUIImage } from 'semantic-ui-react';
 
 /**
  * Primary UI Image component providing a fallback url if src one is not
@@ -13,9 +14,9 @@ import PropTypes from 'prop-types';
  */
 export class Image extends Component {
   render() {
-    const { alt, src, fallbackSrc, className } = this.props;
+    const { alt, src, fallbackSrc, className, ...UIprops } = this.props;
     return (
-      <img
+      <SUIImage
         className={className}
         alt={alt}
         src={src}
@@ -23,6 +24,7 @@ export class Image extends Component {
           currentTarget.onerror = null; // prevents looping
           currentTarget.src = fallbackSrc;
         }}
+        {...UIprops}
       />
     );
   }
