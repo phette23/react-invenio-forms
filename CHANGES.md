@@ -1,5 +1,8 @@
 # Changes
 
+Version 0.10.1 (released 2022-03-14)
+* TextField: resets form errors onBlur to remove any previous error.
+
 Version 0.9.5 (released 2022-02-18)
 * Remove div element from Image component
 
