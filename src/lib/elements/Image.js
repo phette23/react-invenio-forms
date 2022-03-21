@@ -32,7 +32,7 @@ export class Image extends Component {
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  fallbackSrc: PropTypes.string.isRequired,
+  fallbackSrc: PropTypes.string,
   className: PropTypes.string,
   alt: PropTypes.string,
 };
@@ -40,4 +40,5 @@ Image.propTypes = {
 Image.defaultProps = {
   className: '',
   alt: 'No image found',
+  fallbackSrc: '/static/images/square-placeholder.png',
 };
