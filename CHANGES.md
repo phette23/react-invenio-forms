@@ -1,5 +1,10 @@
 # Changes
 
+Version 0.10.4 (released 2022-03-29)
+* Integrates latest eslint-invenio-config
+* Adds withCancel utility func
+* Error cmps: pass uiProps
+
 Version 0.10.3 (released 2022-03-25)
 * Image: add default fallback
 * forms: refactor AccordionField
