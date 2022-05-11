@@ -7,10 +7,10 @@
 // under the terms of the MIT License; see LICENSE file for more details.
 
 import { Field, getIn } from "formik";
+import _omit from "lodash/omit";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
-import _omit from "lodash/omit";
 
 export class TextField extends Component {
   constructor(props) {
@@ -22,14 +22,14 @@ export class TextField extends Component {
   }
 
   handleChange = (e) => {
-    let newValue = e.target.value;
+    const newValue = e.target.value;
     const { onChange } = this.props;
     this.setState({
       value: newValue,
       valueUpdated: true,
     });
 
-    if (onChange) onChange(e);
+    onChange && onChange(newValue);
   };
 
   renderFormField = (formikBag) => {

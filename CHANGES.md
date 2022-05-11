@@ -1,5 +1,9 @@
 # Changes
 
+Version 0.10.8 (released 2022-05-11)
+* Adds `onChange` prop to `TextField` to subscribe to text field value changes.
+* Fixes a props warning on Accordion.
+
 Version 0.10.7 (released 2022-05-06)
 * Improve `elements.Image` component to support loading and prioritizing fallbackSrc
   image load first.
