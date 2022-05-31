@@ -29,7 +29,16 @@ export class Image extends Component {
   }
   myRef = React.createRef();
 
-  setSrc = (currentTarget, src) => {
+  setSrc = (currentTarget, src, isFallback = false) => {
+    if (isFallback) {
+      if (!currentTarget.classList.contains("fallback_image")) {
+        currentTarget.className += " fallback_image";
+      }
+    } else {
+      if (currentTarget.classList.contains("fallback_image")) {
+        currentTarget.classList.remove("fallback_image");
+      }
+    }
     if (currentTarget.nodeName !== "IMG") {
       // Item.Image is wrapping the <img> in a div element
       const img = currentTarget.querySelector("img");
@@ -44,7 +53,9 @@ export class Image extends Component {
   render() {
     const { alt, className, src, fallbackSrc, loadFallbackFirst, ...UIprops } =
       this.props;
-    const loadingClass = !loadFallbackFirst ? `${className} placeholder` : className;
+    const loadingClass = !loadFallbackFirst
+      ? `${className} placeholder`
+      : `${className} fallback_image`;
     const url = loadFallbackFirst ? fallbackSrc : src;
     return (
       <Ref innerRef={this.myRef}>
@@ -55,7 +66,7 @@ export class Image extends Component {
           {...(!loadFallbackFirst && {
             onError: ({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              this.setSrc(currentTarget, fallbackSrc);
+              this.setSrc(currentTarget, fallbackSrc, true);
             },
             onLoad: () => {
               // Control the loader via ref to make it immediately invisible
