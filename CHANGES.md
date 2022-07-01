@@ -1,5 +1,10 @@
 # Changes
 
+Version 0.10.11 (released 2022-07-01)
+
+* Sidebar: introduce responsive props
+* Logs: cleanup console errors
+
 Version 0.10.10 (released 2022-06-15)
 
 * Image: add fallback class name
