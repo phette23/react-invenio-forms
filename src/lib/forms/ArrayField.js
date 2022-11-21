@@ -9,7 +9,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { getIn, FieldArray } from "formik";
 import { Form, Icon } from "semantic-ui-react";
-
+import _isEmpty from "lodash/isEmpty";
+import _filter from "lodash/filter";
+import _matches from "lodash/matches";
 import { FieldLabel } from "./FieldLabel";
 
 export class ArrayField extends Component {
@@ -31,6 +33,32 @@ export class ArrayField extends Component {
     return false;
   };
 
+  /**
+   * Returns the array of values to display, it checks for required options and adds empty rows with the required values prefilled
+   * @param {Array} values The array of values
+   * @param {String} fieldPath The path of the field
+   * @returns An array of values to display
+   */
+  getValues = (values, fieldPath) => {
+    const { requiredOptions, defaultNewValue, showEmptyValue } = this.props;
+    const existingValues = getIn(values, fieldPath, []);
+
+    if (_isEmpty(requiredOptions) && _isEmpty(existingValues) && showEmptyValue) {
+      existingValues.push({ __key: existingValues.length, ...defaultNewValue });
+    }
+
+    for (const requiredOption of requiredOptions) {
+      const valuesMatchingRequiredOption = _filter(
+        existingValues,
+        _matches(requiredOption)
+      );
+      if (valuesMatchingRequiredOption.length === 0) {
+        existingValues.push({ __key: existingValues.length, ...requiredOption });
+      }
+    }
+    return existingValues;
+  };
+
   renderFormField = (props) => {
     const {
       form: { values, errors },
@@ -44,18 +72,21 @@ export class ArrayField extends Component {
       label,
       labelIcon,
       helpText,
+      requiredOptions,
       ...uiProps
     } = this.props;
     const hasError = this.hasGroupErrors(errors) ? { error: {} } : {};
     const { nextKey } = this.state;
+    const valuesToDisplay = this.getValues(values, fieldPath);
     return (
       <Form.Field {...uiProps} {...hasError}>
         <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
 
-        {getIn(values, fieldPath, []).map((value, index, array) => {
+        {valuesToDisplay.map((value, index, array) => {
           const arrayPath = fieldPath;
           const indexPath = index;
           const key = value.__key || index;
+
           return (
             <div key={key}>
               {children({
@@ -64,6 +95,7 @@ export class ArrayField extends Component {
                 arrayPath,
                 indexPath,
                 key,
+                value,
                 ...props,
               })}
             </div>
@@ -114,6 +146,8 @@ ArrayField.propTypes = {
   helpText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   labelIcon: PropTypes.string,
+  requiredOptions: PropTypes.array,
+  showEmptyValue: PropTypes.bool,
 };
 
 ArrayField.defaultProps = {
@@ -121,4 +155,6 @@ ArrayField.defaultProps = {
   helpText: "",
   label: "",
   labelIcon: "",
+  requiredOptions: [],
+  showEmptyValue: false,
 };
