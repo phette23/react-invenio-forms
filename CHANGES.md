@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.1.0 (released 2022-11-29)
+
+- add required options to array field
+
 Version 1.0.1 (released 2022-11-10)
 
 - add central axios config
@@ -45,7 +49,7 @@ Version 0.10.7 (released 2022-05-06)
 
 - Improve `elements.Image` component to support loading and prioritizing fallbackSrc
   image load first.
-- Fix AccordionField error state to dependend on children fieldPaths
+- Fix AccordionField error state to depend on children fieldPaths
 
 Version 0.10.6 (released 2022-04-26)
 
