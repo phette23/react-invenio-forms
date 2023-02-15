@@ -1,5 +1,9 @@
 # Changes
 
+Version 1.1.2 (released 2023-02-15)
+
+- widgets: add rows prop to TextArea component
+
 Version 1.1.1 (released 2023-01-24)
 
 - forms: fix ArrayField element remove button 
