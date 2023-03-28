@@ -1,5 +1,10 @@
 # Changes
 
+Version 2.1.0 (released 2023-03-28)
+
+- reorganise subpackages
+- add locale relative time calculation function
+
 Version 2.0.0 (released 2023-03-01)
 
 - add multiple folders to dynamic loader
