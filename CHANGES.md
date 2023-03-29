@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.2.0 (released 2023-03-29)
+
+- add ErrorMessage generic component
+
 Version 2.1.0 (released 2023-03-28)
 
 - reorganise subpackages
