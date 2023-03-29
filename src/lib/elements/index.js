@@ -9,3 +9,4 @@
  */
 export { Image } from "./Image";
 export { GridResponsiveSidebarColumn } from "./GridResponsiveSidebarColumn";
+export { ErrorMessage } from "./ErrorMessage";
