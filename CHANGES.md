@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.3.0 (released 2023-04-20)
+
+- add human friendly bytes representation component
+
 Version 2.2.0 (released 2023-03-29)
 
 - add ErrorMessage generic component
