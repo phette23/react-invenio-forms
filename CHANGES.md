@@ -1,5 +1,10 @@
 # Changes
 
+Version 2.5.0 (released 2023-09-04)
+
+- add RDM contrib components
+- package: fix 'browser' entry in dist/package.json
+
 Version 2.4.0 (released 2023-04-20)
 
 - add accessible Popup component
