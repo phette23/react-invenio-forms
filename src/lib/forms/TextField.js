@@ -45,6 +45,7 @@ export class TextField extends Component {
                 disabled={disabled}
                 fluid
                 label={label}
+                id={fieldPath}
                 required={required}
                 {...uiProps}
               />
