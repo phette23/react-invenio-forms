@@ -35,7 +35,13 @@ export class TextField extends Component {
             return (
               <Form.Input
                 {...field}
-                error={meta.error}
+                error={
+                  error ||
+                  meta.error ||
+                  // We check if initialValue changed to display the initialError,
+                  // otherwise it would be displayed despite updating the fieldu
+                  (!meta.touched && meta.initialError)
+                }
                 disabled={disabled}
                 fluid
                 label={label}

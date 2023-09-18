@@ -10,13 +10,19 @@ import PropTypes from "prop-types";
 import { Field, FastField } from "formik";
 import { Accordion, Container } from "semantic-ui-react";
 import _omit from "lodash/omit";
+import _get from "lodash/get";
 
 export class AccordionField extends Component {
-  hasError(errors) {
+  hasError(errors, initialValues = undefined, values = undefined) {
     const { includesPaths } = this.props;
     for (const errorPath in errors) {
       for (const subPath in errors[errorPath]) {
-        if (includesPaths.includes(`${errorPath}.${subPath}`)) return true;
+        const path = `${errorPath}.${subPath}`;
+        if (
+          _get(initialValues, path, "") === _get(values, path, "") &&
+          includesPaths.includes(`${errorPath}.${subPath}`)
+        )
+          return true;
       }
     }
     return false;
@@ -24,14 +30,15 @@ export class AccordionField extends Component {
 
   renderAccordion = (props) => {
     const {
-      form: { errors, status },
+      form: { errors, status, initialErrors, initialValues, values },
     } = props;
 
     // eslint-disable-next-line no-unused-vars
     const { label, children, active, ...ui } = this.props;
     const uiProps = _omit({ ...ui }, ["optimized", "includesPaths"]);
-
-    const hasError = status ? this.hasError(status) : this.hasError(errors);
+    const hasError = status
+      ? this.hasError(status)
+      : this.hasError(errors) || this.hasError(initialErrors, initialValues, values);
     const panels = [
       {
         key: `panel-${label}`,
