@@ -1,5 +1,10 @@
 # Changes
 
+Version 2.7.0 (released 2023-09-21)
+
+- elements: add accessibility attributes
+- array and select: fix formatting
+
 Version 2.6.1 (released 2023-09-19)
 
 - forms: fix missing display of initial errors 
