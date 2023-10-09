@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.8.1 (released 2023-10-09)
+
+- remote field: log errors to console
+
 Version 2.8.0 (released 2023-10-02)
 
 - ui: added toggle and keyboard focus for accordion
