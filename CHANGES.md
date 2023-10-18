@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.8.2 (released 2023-10-18)
+
+- user widget: display username correctly
+
 Version 2.8.1 (released 2023-10-09)
 
 - remote field: log errors to console
