@@ -49,7 +49,7 @@ export class ErrorMessage extends Component {
     const { header, errors, content, icon, ...uiProps } = this.props;
 
     return (
-      <Message icon {...uiProps}>
+      <Message icon={Boolean(icon)} {...uiProps}>
         {icon && <Icon name={icon} />}
         <Message.Content role="alert">
           {header && <Message.Header>{header}</Message.Header>}
