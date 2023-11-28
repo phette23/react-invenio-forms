@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.8.3 (released 2023-11-28)
+
+- ErrorMessage: add icon attribute only when needed
+
 Version 2.8.2 (released 2023-10-18)
 
 - user widget: display username correctly
