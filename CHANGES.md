@@ -1,5 +1,9 @@
 # Changes
 
+Version 2.8.4 (released 2023-12-12)
+
+- Replace CKEditor with TinyMCE
+
 Version 2.8.3 (released 2023-11-28)
 
 - ErrorMessage: add icon attribute only when needed
