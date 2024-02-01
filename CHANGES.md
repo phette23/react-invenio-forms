@@ -2,6 +2,10 @@
 
 Version 3.0.0 (released 2024-01-30)
 
+- fix discoverable rendering for empty fields
+
+Version 3.0.0 (released 2024-01-30)
+
 - add discoverable custom fields components
 
 Version 2.8.4 (released 2023-12-12)
