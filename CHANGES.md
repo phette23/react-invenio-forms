@@ -1,6 +1,10 @@
 # Changes
 
-Version 3.0.0 (released 2024-01-30)
+Version 3.1.0 (released 2024-01-30)
+
+- custom fields: add remove discovered field button
+
+Version 3.0.1 (released 2024-01-30)
 
 - fix discoverable rendering for empty fields
 

@@ -1,6 +1,6 @@
 {
   "name": "react-invenio-forms",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "React components to build forms in Invenio",
   "main": "dist/cjs/index.js",
   "browser": "dist/cjs/index.js",
