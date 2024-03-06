@@ -1,5 +1,10 @@
 # Changes
 
+Version 3.2.0 (released 2024-03-06)
+
+- dropdown: added a dropdown for subjects
+- editor: refactor config for editor
+
 Version 3.1.0 (released 2024-01-30)
 
 - custom fields: add remove discovered field button
