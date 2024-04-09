@@ -1,5 +1,9 @@
 # Changes
 
+Version 3.3.0 (released 2024-04-09)
+
+- utils: added a reusable dropdown items serializer
+
 Version 3.2.0 (released 2024-03-06)
 
 - dropdown: added a dropdown for subjects
