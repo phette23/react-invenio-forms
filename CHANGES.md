@@ -1,5 +1,9 @@
 # Changes
 
+Version 3.5.0 (released 2024-06-28)
+
+- RemoteSelect: pass searchQueryParamName as a property
+
 Version 3.4.0 (released 2024-06-12)
 
 - ui: allow accordion to be folded as a default when not marked as active
