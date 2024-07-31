@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import { DiscoverFieldsSection } from "./DiscoverFieldsSection";
 import { AccordionField } from "../../AccordionField";
 import { loadWidgetsFromConfig } from "../loader";
+import { Container } from "semantic-ui-react";
 
 export class CustomFields extends Component {
   constructor(props) {
@@ -77,16 +78,26 @@ export class CustomFields extends Component {
     return (
       <>
         {sections &&
-          sections.map(({ fields, paths, ...sectionConfig }) => (
-            <AccordionField
-              key={sectionConfig.section}
-              includesPaths={paths}
-              label={sectionConfig.section}
-              active
-            >
-              {fields}
-            </AccordionField>
-          ))}
+          sections.map((section) => {
+            const {
+              fields,
+              paths,
+              displaySection,
+              section: sectionName = "",
+            } = section;
+            return displaySection ? (
+              <AccordionField
+                key={`section-${sectionName}`}
+                includesPaths={paths}
+                label={sectionName}
+                active
+              >
+                {fields}
+              </AccordionField>
+            ) : (
+              <Container key="custom-fields-section">{fields}</Container>
+            );
+          })}
         {discoverFieldsSections && discoverFieldsSections.length > 0 && (
           <DiscoverFieldsSection
             templateLoaders={templateLoaders}
@@ -103,6 +114,7 @@ CustomFields.propTypes = {
   config: PropTypes.arrayOf(
     PropTypes.shape({
       section: PropTypes.string.isRequired,
+      displaySection: PropTypes.bool,
       fields: PropTypes.arrayOf(
         PropTypes.shape({
           field: PropTypes.string.isRequired,
