@@ -83,7 +83,7 @@ export class CustomFields extends Component {
               fields,
               paths,
               displaySection,
-              section: sectionName = "",
+              section: sectionName,
             } = section;
             return displaySection ? (
               <AccordionField
