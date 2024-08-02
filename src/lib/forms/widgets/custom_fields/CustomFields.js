@@ -79,7 +79,12 @@ export class CustomFields extends Component {
       <>
         {sections &&
           sections.map((section) => {
-            const { fields, paths, displaySection, section: sectionName } = section;
+            const {
+              fields,
+              paths,
+              displaySection = true,
+              section: sectionName,
+            } = section;
             return displaySection ? (
               <AccordionField
                 key={`section-${sectionName}`}
