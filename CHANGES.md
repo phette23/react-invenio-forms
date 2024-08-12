@@ -1,5 +1,10 @@
 # Changes
 
+Version 4.0.0 (released 2024-08-12)
+
+- customfields: allow hiding section name
+- api: change default accept header for ajax calls (breaking change) 
+
 Version 3.5.2 (released 2024-08-02)
 
 - editor: avoid losing content when the editor loses focus
