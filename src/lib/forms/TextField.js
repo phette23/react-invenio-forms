@@ -69,7 +69,6 @@ TextField.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   optimized: PropTypes.bool,
   required: PropTypes.bool,
-  value: PropTypes.string,
 };
 
 TextField.defaultProps = {
@@ -78,5 +77,4 @@ TextField.defaultProps = {
   disabled: false,
   optimized: false,
   required: false,
-  value: undefined,
 };
