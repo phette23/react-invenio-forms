@@ -1,10 +1,5 @@
 # Changes
 
-Version 4.2.0 (released 2024-09-26)
-
-- contrib: add affiliation suggestion component
-- fields: propagate initial value to widgets (avoids setting explicitly by formik props)
-
 Version 4.1.0 (released 2024-09-02)
 
 - editor: disable TinyMCE convert_urls to fix same domain URLs
