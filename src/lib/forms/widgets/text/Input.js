@@ -15,7 +15,6 @@ export default class Input extends Component {
       description,
       disabled,
       type,
-      value,
     } = this.props;
 
     return (
@@ -28,7 +27,6 @@ export default class Input extends Component {
         label={<FieldLabel htmlFor={fieldPath} icon={icon} label={label} />}
         placeholder={placeholder}
         type={type}
-        value={value}
       />
     );
   }
