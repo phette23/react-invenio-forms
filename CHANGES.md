@@ -1,7 +1,10 @@
 # Changes
 
+Version 4.3.0 (released 2024-10-10)
 
-Version 4.2.1 (released 2024-09-27) 
+- deps: bump axios major version
+
+Version 4.2.1 (released 2024-09-27)
 
 - contrib: add affiliation suggestion component
 
@@ -9,7 +12,7 @@ Version 4.2.0 (released 2024-09-26) (yanked)
 
 - contrib: add affiliation suggestion component
 - fields: propagate initial value to widgets (avoids setting explicitly by formik props)
-- yanked: initial values props is interfering with formik internal state in already existing forms  
+- yanked: initial values props is interfering with formik internal state in already existing forms
 
 Version 4.1.0 (released 2024-09-02)
 
@@ -21,7 +24,7 @@ Version 4.1.0 (released 2024-09-02)
 Version 4.0.0 (released 2024-08-12)
 
 - customfields: allow hiding section name
-- api: change default accept header for ajax calls (breaking change) 
+- api: change default accept header for ajax calls (breaking change)
 
 Version 3.5.2 (released 2024-08-02)
 

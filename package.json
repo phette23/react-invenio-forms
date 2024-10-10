@@ -1,6 +1,6 @@
 {
   "name": "react-invenio-forms",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Reusable React components for forms and other in Invenio",
   "main": "dist/cjs/index.js",
   "browser": "dist/cjs/index.js",
@@ -113,4 +113,3 @@
     "node": ">=16.0.0"
   }
 }
-
