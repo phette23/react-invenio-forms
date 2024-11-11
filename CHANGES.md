@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.3.1 (released 2024-11-11)
+
+- contrib: fix affiliations selection display
+
 Version 4.3.0 (released 2024-10-10)
 
 - deps: bump axios major version
