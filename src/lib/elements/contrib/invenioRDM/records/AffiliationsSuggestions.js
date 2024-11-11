@@ -86,6 +86,7 @@ export const AffiliationsSuggestions = (creatibutors, isOrganization) => {
       value: creatibutor.name,
       extra: creatibutor,
       key: creatibutor.name,
+      name: creatibutor.name,
       id: creatibutor.id,
       content: (
         <Header>
