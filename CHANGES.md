@@ -1,5 +1,11 @@
 # Changes
 
+Version 4.4.0 (released 2024-11-14)
+
+- deps: adds react-overridable
+- forms: bugfix on RemoteSelectField
+- contrib: make AffiliationsSuggestions overridable
+
 Version 4.3.1 (released 2024-11-11)
 
 - contrib: fix affiliations selection display
