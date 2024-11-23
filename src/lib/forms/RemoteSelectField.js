@@ -44,9 +44,17 @@ export class RemoteSelectField extends Component {
     this.cancellableAction && this.cancellableAction.cancel();
   }
 
-  onSelectValue = (event, { options, value }, callbackFunc) => {
+  onSelectValue = (event, { options, value, ...otherData }, callbackFunc) => {
     const { multiple } = this.props;
-    const newSelectedSuggestions = options.filter((item) => value.includes(item.value));
+    const newSelectedSuggestions = options.filter((item) => {
+      if (multiple) {
+        // "value" is an array so check if it includes the option's value
+        return value.includes(item.value);
+      } else {
+        // "value" is a string so we just compare directly
+        return item.value === value;
+      }
+    });
 
     this.setState(
       {
