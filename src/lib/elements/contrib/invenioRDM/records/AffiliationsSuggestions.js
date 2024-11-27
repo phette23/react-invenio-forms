@@ -60,8 +60,14 @@ export const makeSubheader = (creatibutor, isOrganization) => {
     }`.trim();
   } else {
     return (
-      creatibutor?.affiliations?.map((affiliation) => affiliation.name)?.join(", ") ||
-      ""
+      creatibutor?.affiliations
+        ?.map((affiliation) => {
+          if (affiliation.acronym?.length > 0) {
+            return `${affiliation.name} (${affiliation.acronym})`;
+          }
+          return affiliation.name;
+        })
+        ?.join(", ") || ""
     );
   }
 };
