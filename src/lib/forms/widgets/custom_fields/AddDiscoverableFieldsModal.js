@@ -10,7 +10,7 @@ import { RemoveField } from "./RemoveField";
 import { ListAndFilterCustomFields } from "./ListAndFilterCustomFields";
 import { importWidget } from "../loader";
 
-import { Button, Icon, Modal, Divider } from "semantic-ui-react";
+import { Button, Icon, Modal } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
