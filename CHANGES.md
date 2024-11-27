@@ -1,5 +1,12 @@
 # Changes
 
+Version 4.5.0 (release 2024-11-27)
+
+- affiliations: render organization acronym in subheader
+- affiliations: fix serialization values
+- RemoteSelectField: fix handling of multiple value selection
+- affiliations: exporting helper functions
+
 Version 4.4.0 (released 2024-11-14)
 
 - deps: adds react-overridable
