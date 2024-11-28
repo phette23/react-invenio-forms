@@ -90,14 +90,15 @@ export const AffiliationsSuggestions = (creatibutors, isOrganization) => {
 
     return {
       text: creatibutor.name,
-      value: creatibutor.id || creatibutor.name,
-      name: creatibutor.id || creatibutor.name,
+      value: creatibutor.name,
+      name: creatibutor.name,
       extra: creatibutor,
-      key: creatibutor.id,
       id: creatibutor.id,
+      key: creatibutor.id, // Needed by RemoteSelectField to filter out unique values
       content: (
         <Overridable
           id="ReactInvenioForms.AffiliationsSuggestions.content"
+          key={creatibutor.id}
           creatibutor={creatibutor}
           isOrganization={isOrganization}
           idString={idString}
