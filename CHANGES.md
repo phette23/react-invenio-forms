@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.5.1 (release 2024-11-29)
+
+- affiliations: fix generated dropdown values
+
 Version 4.5.0 (release 2024-11-27)
 
 - affiliations: render organization acronym in subheader
