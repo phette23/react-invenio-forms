@@ -1,5 +1,10 @@
 # Changes
 
+Version 4.5.2 (release 2025-01-15)
+
+- affiliations: update value property to use id
+- subjects: updated subject serialization
+
 Version 4.5.1 (release 2024-11-29)
 
 - affiliations: fix generated dropdown values
