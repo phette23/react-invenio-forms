@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.5.3 (release 2025-03-10)
+
+- custom fields:  replace cancel with close btn in modals (ux improvement)
+
 Version 4.5.2 (release 2025-01-15)
 
 - affiliations: update value property to use id
