@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.6.0 (release 2025-03-18)
+
+- forms: add error count label in accordion and add FeedbackLabel
+
 Version 4.5.3 (release 2025-03-10)
 
 - custom fields:  replace cancel with close btn in modals (ux improvement)
