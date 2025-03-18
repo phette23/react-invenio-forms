@@ -84,6 +84,7 @@ export class CustomFields extends Component {
               paths,
               displaySection = true,
               section: sectionName,
+              id: sectionId,
             } = section;
             return displaySection ? (
               <AccordionField
@@ -91,6 +92,7 @@ export class CustomFields extends Component {
                 includesPaths={paths}
                 label={sectionName}
                 active
+                id={sectionId}
               >
                 {fields}
               </AccordionField>
