@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.6.1 (release 2025-03-21)
+
+- utils: updated string error handling in flattenAndCategorizeErrors
+
 Version 4.6.0 (release 2025-03-18)
 
 - forms: add error count label in accordion and add FeedbackLabel
