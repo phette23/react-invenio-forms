@@ -1,5 +1,11 @@
 # Changes
 
+Version 4.7.0 (release 2025-03-26)
+
+- forms: FeedbackLabel: display unescaped description (sanitized HTML)
+- custom_fields: add support for ui section widget
+    - allow to rename DiscoverFieldsSection label
+
 Version 4.6.1 (release 2025-03-21)
 
 - utils: updated string error handling in flattenAndCategorizeErrors
