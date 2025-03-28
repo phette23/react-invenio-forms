@@ -1,5 +1,14 @@
 # Changes
 
+Version 4.7.0 (release 2025-03-28)
+
+- forms: add support for new error format to TextField
+- accordion field: fix detection of errors with new format
+- forms: show icon and tooltip for new error format with severity error
+- editor: Add word count plugin to RichEditor toolbar
+    - This is useful when the input field has a character limit, allowing users to see the current character count.
+    - Related to https://github.com/inveniosoftware/invenio-requests/pull/391
+
 Version 4.7.0 (release 2025-03-26)
 
 - forms: FeedbackLabel: display unescaped description (sanitized HTML)
