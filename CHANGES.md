@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.8.1 (release 2025-03-28)
+
+- forms: FeedbackLabel: fix new prop not displayed due to state usage
+
 Version 4.8.0 (release 2025-03-28)
 
 - forms: add support for new error format to TextField
