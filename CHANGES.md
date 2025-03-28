@@ -1,6 +1,6 @@
 # Changes
 
-Version 4.7.0 (release 2025-03-28)
+Version 4.8.0 (release 2025-03-28)
 
 - forms: add support for new error format to TextField
 - accordion field: fix detection of errors with new format
