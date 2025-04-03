@@ -1,5 +1,11 @@
 # Changes
 
+Version 4.8.2 (release 2025-04-03)
+
+- fix: refactor filter logic in ListAndFilterCustomFields component
+- fix: eslint warnings
+- chore: update dependencies
+
 Version 4.8.1 (release 2025-03-28)
 
 - forms: FeedbackLabel: fix new prop not displayed due to state usage
