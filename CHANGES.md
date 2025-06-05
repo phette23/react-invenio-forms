@@ -1,5 +1,12 @@
 # Changes
 
+Version 4.9.0 (release 2025-06-05)
+
+- FeedbackLabel: adapt to use with formik
+- feedback: add feedback label to select field
+- fix: refactor filter logic in ListAndFilterCustomFields component
+
+
 Version 4.8.2 (release 2025-04-03)
 
 - fix: refactor filter logic in ListAndFilterCustomFields component
