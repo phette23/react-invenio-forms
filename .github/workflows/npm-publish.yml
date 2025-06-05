@@ -7,7 +7,7 @@ on:
 
 jobs:
   Publish:
-    runs-on: ubuntu-24.04 [Beta]
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
