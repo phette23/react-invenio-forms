@@ -1,5 +1,9 @@
 # Changes
 
+Version 4.9.1 (release 2025-06-10)
+
+- feedback label: fix nested errors display
+
 Version 4.9.0 (release 2025-06-05)
 
 - FeedbackLabel: adapt to use with formik
