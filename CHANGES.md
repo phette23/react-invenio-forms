@@ -1,5 +1,12 @@
 # Changes
 
+Version 4.10.0 (release 2025-06-18)
+
+- CustomFields: pass severityChecks
+- AccordionField: use severityChecks label instead of severity key
+- AccordionField: correct accordion labels for deeply nested errors
+- FeedbackLabel: add missing pointing values
+
 Version 4.9.1 (release 2025-06-10)
 
 - feedback label: fix nested errors display
