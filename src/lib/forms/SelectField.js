@@ -122,6 +122,8 @@ SelectField.propTypes = {
   onAddItem: PropTypes.func,
   multiple: PropTypes.bool,
   helpText: PropTypes.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 SelectField.defaultProps = {
@@ -133,4 +135,6 @@ SelectField.defaultProps = {
   onAddItem: undefined,
   multiple: false,
   helpText: undefined,
+  required: false,
+  disabled: false,
 };
