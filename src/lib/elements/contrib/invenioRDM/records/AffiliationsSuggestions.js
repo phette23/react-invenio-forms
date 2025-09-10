@@ -30,7 +30,7 @@ export const makeIdEntry = (identifier) => {
     default:
       return (
         <>
-          {identifier.scheme}: {identifier.identifier}
+          <span className="name-identifier-scheme">{identifier.scheme}:</span> <span className="name-identifier">{identifier.identifier} </span>
         </>
       );
   }
